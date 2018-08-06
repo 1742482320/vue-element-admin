@@ -1,29 +1,35 @@
+// 这个文件是请求的配置文件
+
 import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-// create an axios instance
+// 配置axios的实例
 const service = axios.create({
+  // 基本路由
   baseURL: process.env.BASE_API, // api的base_url
+  // 如果请求的时间超过'timeout'，请求将被中止
   timeout: 5000 // request timeout
 })
 
-// request interceptor
-service.interceptors.request.use(config => {
-  // Do something before request is sent
+// 添加请求拦截器
+service.interceptors.request.use(config => { // 请求前
+  // store里的token是否存在
   if (store.getters.token) {
+    // 修改配置
     // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
     config.headers['X-Token'] = getToken()
   }
+  // 输出配置
   return config
-}, error => {
+}, error => { // 对请求错误
   // Do something with request error
   console.log(error) // for debug
   Promise.reject(error)
 })
 
-// respone interceptor
+// 添加响应拦截器
 service.interceptors.response.use(
   response => response,
   /**

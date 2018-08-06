@@ -1,3 +1,5 @@
+<!-- 这个组件是切换语言按钮 -->
+
 <template>
   <el-dropdown trigger="click" class='international' @command="handleSetLanguage">
     <div>
@@ -13,14 +15,18 @@
 <script>
 export default {
   computed: {
+    // 语言类型
     language() {
       return this.$store.getters.language
     }
   },
   methods: {
     handleSetLanguage(lang) {
+      // 设置语言类型
       this.$i18n.locale = lang
+      // 调用action里的setLanguage
       this.$store.dispatch('setLanguage', lang)
+      // 信息
       this.$message({
         message: 'switch language success',
         type: 'success'

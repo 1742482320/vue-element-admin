@@ -1,5 +1,8 @@
+// cookie的增、删、改三个方法
+
 import Cookies from 'js-cookie'
 
+// 权限的键
 const TokenKey = 'Admin-Token'
 
 export function getToken() {

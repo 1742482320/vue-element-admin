@@ -6,24 +6,25 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/views/layout/Layout'
 
-/** note: submenu only apppear when children.length>=1
+/** 注意：子菜单只有在children.length>=1时使用
 *   detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
 **/
 
 /**
-* hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
-* alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
+* hidden: true                   不显示侧边栏
+* alwaysShow: true               如果设置为true，将始终显示根菜单，不管它的子路径长度是多少
 *                                if not set alwaysShow, only more than one route under the children
-*                                it will becomes nested mode, otherwise not show the root menu
-* redirect: noredirect           if `redirect:noredirect` will no redirct in the breadcrumb
-* name:'router-name'             the name is used by <keep-alive> (must set!!!)
+*                                它将变成嵌套模式，否则不显示根菜单
+* redirect: noredirect           如果设置‘redirect:noredirect’ 将不会再面包屑中重定向
+* name:'router-name'             这个名称由<keep-alive>使用，必须设置
 * meta : {
-    roles: ['admin','editor']     will control the page roles (you can set multiple roles)
-    title: 'title'               the name show in submenu and breadcrumb (recommend set)
-    icon: 'svg-name'             the icon show in the sidebar,
-    noCache: true                if true ,the page will no be cached(default is false)
+    roles: ['admin','editor']    表示页面只有指定用户能浏览，如果不设置表示页面公开
+    title: 'title'               在子菜单和面包屑中显示的名称
+    icon: 'svg-name'             图标显示在侧边栏
+    noCache: true                如果为true，页面将不会被缓存，默认false
   }
 **/
+// 普通路由
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/authredirect', component: () => import('@/views/login/authredirect'), hidden: true },
@@ -64,12 +65,16 @@ export const constantRouterMap = [
   }
 ]
 
+// 创建一个路由实例
 export default new Router({
   // mode: 'history', // require service support
+  // 当切换到新路由时，滚到顶部
   scrollBehavior: () => ({ y: 0 }),
+  // 使用普通路由
   routes: constantRouterMap
 })
 
+// 异步路由
 export const asyncRouterMap = [
   {
     path: '/permission',
@@ -95,7 +100,7 @@ export const asyncRouterMap = [
       name: 'directivePermission',
       meta: {
         title: 'directivePermission'
-        // if do not set roles, means: this page does not require permission
+        // 如果不设置角色，意味着:此页面不需要权限
       }
     }]
   },

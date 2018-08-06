@@ -12,6 +12,7 @@
 export default {
   name: 'AppMain',
   computed: {
+    // 当前的视图窗口
     cachedViews() {
       return this.$store.state.tagsView.cachedViews
     },

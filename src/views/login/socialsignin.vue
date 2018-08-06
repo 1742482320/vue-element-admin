@@ -1,3 +1,5 @@
+<!-- 第三方登录组件 -->
+
 <template>
   <div class="social-signup-container">
     <div class="sign-btn" @click="wechatHandleClick('wechat')">
@@ -10,18 +12,24 @@
 </template>
 
 <script>
+
+//  打开一个新的窗口设置路径 标题 大小 位置
 import openWindow from '@/utils/openWindow'
 
 export default {
   name: 'social-signin',
   methods: {
+    // 微信第三方接口
     wechatHandleClick(thirdpart) {
+      // SET_AUTH_TYPE框架中没有写，如果需要调用第三方接口需要在store中添加
       this.$store.commit('SET_AUTH_TYPE', thirdpart)
+      // 微信OAuth2.0授权的appid
       const appid = 'xxxxx'
       const redirect_uri = encodeURIComponent('xxx/redirect?redirect=' + window.location.origin + '/authredirect')
       const url = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + appid + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_login#wechat_redirect'
       openWindow(url, thirdpart, 540, 540)
     },
+    // qq第三方接口
     tencentHandleClick(thirdpart) {
       this.$store.commit('SET_AUTH_TYPE', thirdpart)
       const client_id = 'xxxxx'

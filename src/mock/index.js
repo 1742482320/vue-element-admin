@@ -1,4 +1,6 @@
+// 引入 mock
 import Mock from 'mockjs'
+// 引入模拟登录api
 import loginAPI from './login'
 import articleAPI from './article'
 import remoteSearchAPI from './remoteSearch'

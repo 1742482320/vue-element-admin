@@ -1,3 +1,7 @@
+<!-- 
+    * 这是一个图标组件 
+-->
+
 <template>
   <svg :class="svgClass" aria-hidden="true">
     <use :xlink:href="iconName"></use>
@@ -20,6 +24,7 @@ export default {
     iconName() {
       return `#icon-${this.iconClass}`
     },
+    // 图标类
     svgClass() {
       if (this.className) {
         return 'svg-icon ' + this.className

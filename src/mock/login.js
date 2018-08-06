@@ -1,13 +1,20 @@
 import { param2Obj } from '@/utils'
 
 const userMap = {
+  // 超级管理员
   admin: {
+    // 个人信息
     roles: ['admin'],
+    // 指令
     token: 'admin',
+    // 说明
     introduction: '我是超级管理员',
+    // 头像
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    // 名字
     name: 'Super Admin'
   },
+  // 编辑
   editor: {
     roles: ['editor'],
     token: 'editor',
